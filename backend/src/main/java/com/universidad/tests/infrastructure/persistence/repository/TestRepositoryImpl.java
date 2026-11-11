@@ -22,7 +22,7 @@ public class TestRepositoryImpl implements TestRepository {
 
     @Override
     public List<Test> findActivos() {
-        return springDataTestRepository.findByActivoTrue().stream()
+        return springDataTestRepository.findActivosWithSubpruebas().stream()
             .map(this::toDomain)
             .collect(Collectors.toList());
     }

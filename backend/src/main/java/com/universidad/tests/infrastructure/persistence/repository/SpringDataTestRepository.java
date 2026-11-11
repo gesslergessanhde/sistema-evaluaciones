@@ -12,6 +12,9 @@ public interface SpringDataTestRepository extends JpaRepository<TestEntity, Long
 
     List<TestEntity> findByActivoTrue();
 
+    @Query("SELECT DISTINCT t FROM TestEntity t LEFT JOIN FETCH t.subpruebas WHERE t.activo = true")
+    List<TestEntity> findActivosWithSubpruebas();
+
     @Query("SELECT DISTINCT t FROM TestEntity t LEFT JOIN FETCH t.subpruebas WHERE t.id = :id AND t.activo = true")
     Optional<TestEntity> findActivoByIdWithSubpruebas(@Param("id") Long id);
 }
